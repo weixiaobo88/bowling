@@ -1,0 +1,28 @@
+@startuml
+class Game {
+    -int totalScore
+    +Game()
+    +playGame()
+    +calculateScore(int[] throws)
+}
+class Round {
+    -int score
+    +Round(int[] throws)
+    +calculateScore()
+}
+class Throw {
+    -int score
+    +Throw(int[] balls, int[] pins)
+    +isStrike()
+    +isSpare()
+    +calculateScore()
+}
+class Bowl {
+    -int balls
+    -int pins
+    +Bowl(int balls, int pins)
+}
+Game --> Round
+Round --> Throw
+Round --> Bowl
+@enduml

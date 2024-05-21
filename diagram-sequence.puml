@@ -1,0 +1,15 @@
+@startuml
+participant game as Game
+participant round as Round
+participant throw as Throw
+participant bowl as Bowl
+
+game ->> game: playGame()
+game ->> round: new Round(throws)
+round ->> round: calculateScore()
+round ->> throw: new Throw(balls, pins)
+throw ->> throw: isStrike()
+throw ->> throw: isSpare()
+throw ->> throw: calculateScore()
+throw ->> bowl: new Bowl(balls, pins)
+@enduml
