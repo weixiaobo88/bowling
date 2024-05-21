@@ -11,6 +11,8 @@ public class Game {
       int index = throwList.indexOf(currentFrame);
       if (currentFrame.isStrike()) {
         score += calculateScoreForStrike(throwList, currentFrame, index);
+      } else if (currentFrame.isSpare()) {
+        score += calculateScoreForSpare(throwList, currentFrame, index);
       }
     }
 
@@ -28,5 +30,13 @@ public class Game {
       }
     }
     return score;
+  }
+  private int calculateScoreForSpare(List<Frame> throwList, Frame currentFrame, int index) {
+    int score = currentFrame.getScore();
+    if (index < throwList.size() - 1) {
+      Frame nextFrame = throwList.get(index + 1);
+      score += nextFrame.getFirstThrowScore();
+    }
+    return score; 
   }
 }

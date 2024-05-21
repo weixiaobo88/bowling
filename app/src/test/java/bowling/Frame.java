@@ -3,6 +3,7 @@ package bowling;
 public class Frame {
   private static final int SCORE_OF_NO_THIRD_THROW = 0;
   private static final int SCORE_OF_STRIKE = 10;
+  private static final int SCORE_OF_SPARE = 10;
   private int firstThrow;
   private int secondThrow;
   private Integer thirdThrow;
@@ -24,6 +25,14 @@ public class Frame {
 
   public int getScore() {
     return firstThrow + secondThrow + (thirdThrow == null ? SCORE_OF_NO_THIRD_THROW : thirdThrow);
+  }
+
+  public int getFirstThrowScore() {
+    return firstThrow;
+  }
+
+  public boolean isSpare() {
+    return firstThrow + secondThrow == SCORE_OF_SPARE;
   }
 
 }

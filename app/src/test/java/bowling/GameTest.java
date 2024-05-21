@@ -26,4 +26,22 @@ class GameTest {
     
     assertEquals(300, score);
   }
+
+  @Test
+  void test_all_spares_with_11th_frame_5_and_12th_frame_5() {
+    Game game = new Game();
+    List<Frame> throwList = new ArrayList<>();
+    for (int i = 0; i < TOTAL_FRAMES; i++) {
+      if (i == TOTAL_FRAMES - 1) {
+        throwList.add(new Frame(5, 5, 5));
+      } else {
+        throwList.add(new Frame(5, 5));
+      }
+    } 
+
+    int score = game.calculateScore(throwList); 
+    
+    assertEquals(150, score);
+  }
+
 }
