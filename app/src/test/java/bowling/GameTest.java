@@ -59,4 +59,17 @@ class GameTest {
     assertEquals(150, score);
   }
 
+    @Test
+    void test_all_normal_frames() {
+        Game game = new Game();
+        List<Frame> throwList = new ArrayList<>();
+        for (int i = 0; i < TOTAL_FRAMES; i++) {
+            throwList.add(new Frame(4, 4));
+        }
+
+        int score = game.calculateScore(throwList);
+
+        assertEquals(80, score);
+    }
+
 }
