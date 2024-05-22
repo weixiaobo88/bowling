@@ -7,3 +7,10 @@ build
 .vscode/
 
 app/bin/**/**.class
+
+# Ignore IntelliJ project files
+*.iml
+*.ipr
+*.iws
+.idea/
+.idea_modules/
