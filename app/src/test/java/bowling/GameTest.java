@@ -72,4 +72,22 @@ class GameTest {
         assertEquals(80, score);
     }
 
+  @Test
+  void test_mixed_frames() {
+    Game game = new Game();
+    List<Frame> throwList = new ArrayList<>();
+    for (int i = 0; i < 5; i++) {
+      throwList.add(new Frame(10, 0));
+    }
+    for (int i = 0; i < 3; i++) {
+      throwList.add(new Frame(5, 5));
+    }
+    throwList.add(new Frame(4, 4));
+    throwList.add(new Frame(4, 4));
+
+    int score = game.calculateScore(throwList);
+
+    assertEquals(195, score);
+  }
+
 }
