@@ -35,4 +35,7 @@ public class Frame {
     return firstThrow + secondThrow == SCORE_OF_SPARE;
   }
 
+  public int getThirdThrowScore() {
+    return thirdThrow == null ? SCORE_OF_NO_THIRD_THROW : thirdThrow;
+  }
 }

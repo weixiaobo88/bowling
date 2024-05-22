@@ -28,6 +28,21 @@ class GameTest {
   }
 
   @Test
+  void test_strikes_with_some_normal_frames() {
+    Game game = new Game();
+    List<Frame> throwList = new ArrayList<>();
+    for (int i = 0; i < 8; i++) {
+      throwList.add(new Frame(10, 0));
+    }
+    throwList.add(new Frame(4, 5)); 
+    throwList.add(new Frame(10, 10, 10)); 
+    
+    int score = game.calculateScore(throwList);
+
+    assertEquals(262, score);
+  }
+
+  @Test
   void test_all_spares_with_11th_frame_5_and_12th_frame_5() {
     Game game = new Game();
     List<Frame> throwList = new ArrayList<>();
@@ -37,10 +52,10 @@ class GameTest {
       } else {
         throwList.add(new Frame(5, 5));
       }
-    } 
+    }
 
-    int score = game.calculateScore(throwList); 
-    
+    int score = game.calculateScore(throwList);
+
     assertEquals(150, score);
   }
 
