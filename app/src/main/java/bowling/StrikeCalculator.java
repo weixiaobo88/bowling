@@ -3,7 +3,8 @@ package bowling;
 import java.util.List;
 
 public class StrikeCalculator implements FrameCalculator {
-    private int calculateScoreForStrike(List<Frame> throwList, int index) {
+
+    public int calculateScore(List<Frame> throwList, int index) {
         Frame currentFrame = throwList.get(index);
         int score = currentFrame.getScore();
         if (index < throwList.size() - 1) {
@@ -18,9 +19,5 @@ public class StrikeCalculator implements FrameCalculator {
             }
         }
         return score;
-    }
-
-    public int calculateScore(List<Frame> throwList, int index) {
-        return calculateScoreForStrike(throwList, index);
     }
 }
