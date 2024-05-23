@@ -3,19 +3,23 @@ package bowling;
 import java.util.List;
 
 public class Game {
+    private FrameCalculator buildFrameCalculator(List<Frame> throwList, int index) {
+        Frame currentFrame = throwList.get(index);
+        if (currentFrame.isStrike()) {
+            return new StrikeCalculator();
+        } else if (currentFrame.isSpare()) {
+            return new SpareCalculator();
+        } else {
+            return new NormalCalculator();
+        }
+    }
 
     public int calculateScore(List<Frame> throwList) {
         int score = 0;
 
         for (Frame currentFrame : throwList) {
             int index = throwList.indexOf(currentFrame);
-            if (currentFrame.isStrike()) {
-                score += new StrikeCalculator().calculateScore(throwList, index);
-            } else if (currentFrame.isSpare()) {
-                score += new SpareCalculator().calculateScore(throwList, index);
-            } else {
-                score += new NormalCalculator().calculateScore(throwList, index);
-            }
+            score += buildFrameCalculator(throwList, index).calculateScore(throwList, index);
         }
 
         return score;

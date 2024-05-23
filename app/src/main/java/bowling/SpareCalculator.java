@@ -2,7 +2,7 @@ package bowling;
 
 import java.util.List;
 
-public class SpareCalculator {
+public class SpareCalculator implements FrameCalculator {
     private int calculateScoreForSpare(List<Frame> throwList, int index) {
         Frame currentFrame = throwList.get(index);
         int score = currentFrame.getScore();
