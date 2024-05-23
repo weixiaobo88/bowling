@@ -12,7 +12,7 @@ public class Game {
             if (currentFrame.isStrike()) {
                 score += new StrikeCalculator().calculateScore(throwList, index);
             } else if (currentFrame.isSpare()) {
-                score += calculateScoreForSpare(throwList, index);
+                score += new SpareCalculator().calculateScore(throwList, index);
             } else {
                 score += calculateScoreForNormal(throwList, index);
             }
@@ -26,13 +26,4 @@ public class Game {
         return currentFrame.getScore();
     }
 
-    private int calculateScoreForSpare(List<Frame> throwList, int index) {
-        Frame currentFrame = throwList.get(index);
-        int score = currentFrame.getScore();
-        if (index < throwList.size() - 1) {
-            Frame nextFrame = throwList.get(index + 1);
-            score += nextFrame.getFirstThrowScore();
-        }
-        return score;
-    }
 }
