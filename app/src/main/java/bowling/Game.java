@@ -14,11 +14,16 @@ public class Game {
             } else if (currentFrame.isSpare()) {
                 score += calculateScoreForSpare(throwList, index);
             } else {
-                score += currentFrame.getScore();
+                score += calculateScoreForNormal(throwList, index);
             }
         }
 
         return score;
+    }
+
+    private int calculateScoreForNormal(List<Frame> throwList, int index) {
+        Frame currentFrame = throwList.get(index);
+        return currentFrame.getScore();
     }
 
     private int calculateScoreForStrike(List<Frame> throwList, int index) {
