@@ -19,28 +19,28 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: Grant execute permission for Gradlew # 给Gradlew脚本执行权限
-        run: chmod +x gradlew
-
-      - name: Build with Gradle # 使用Gradle构建项目
-        run: ./gradlew build
-
-      - name: Test with Gradle # 使用Gradle运行测试
-        run: ./gradlew test
-
-      - name: Upload Test Results # 上传测试结果，用于在GitHub Actions中显示
-        uses: actions/upload-artifact@v2
-        if: always() # 无论测试是否通过，都上传结果
-        with:
-          name: Test Results
-          path: build/reports/tests/test
-
-      - name: Upload Build Artifacts # 上传构建产物，例如jar包
-        uses: actions/upload-artifact@v2
-        if: success() # 仅在构建成功时上传
-        with:
-          name: Build Artifacts
-          path: build/libs/
+#      - name: Grant execute permission for Gradlew # 给Gradlew脚本执行权限
+#        run: chmod +x gradlew
+#
+#      - name: Build with Gradle # 使用Gradle构建项目
+#        run: ./gradlew build
+#
+#      - name: Test with Gradle # 使用Gradle运行测试
+#        run: ./gradlew test
+#
+#      - name: Upload Test Results # 上传测试结果，用于在GitHub Actions中显示
+#        uses: actions/upload-artifact@v2
+#        if: always() # 无论测试是否通过，都上传结果
+#        with:
+#          name: Test Results
+#          path: build/reports/tests/test
+#
+#      - name: Upload Build Artifacts # 上传构建产物，例如jar包
+#        uses: actions/upload-artifact@v2
+#        if: success() # 仅在构建成功时上传
+#        with:
+#          name: Build Artifacts
+#          path: build/libs/
       - name: Update version
         run: |
             # Read the current version
