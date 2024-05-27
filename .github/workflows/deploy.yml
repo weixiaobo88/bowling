@@ -41,3 +41,23 @@ jobs:
         with:
           name: Build Artifacts
           path: build/libs/
+      - name: Update version
+        run: |
+            # Read the current version
+            VERSION=$(cat version.md)
+            # Extract the patch number and increment it
+            PATCH_VERSION=$((${VERSION//v/ } + 1))
+            # Format the new version number
+            NEW_VERSION="v${PATCH_VERSION}"
+            # Update version.md with the new version number
+            echo $NEW_VERSION > version.md
+
+      - name: Commit and push
+        if: success()
+        run: |
+          # Commit the updated version file
+          git config --local user.email "weixiaobo88@github.com"
+          git config --local user.name "weixiaobo88"
+          git add version.md
+          git commit -m "Update version to ${NEW_VERSION}"
+          git push
