@@ -43,14 +43,21 @@ jobs:
 #          path: build/libs/
       - name: Update version
         run: |
-            # Read the current version
-            VERSION=$(cat version.md)
-            # Extract the patch number and increment it
-            PATCH_VERSION=$((${VERSION//v/ } + 1))
-            # Format the new version number
-            NEW_VERSION="v${PATCH_VERSION}"
-            # Update version.md with the new version number
-            echo $NEW_VERSION > version.md
+          # Read the current version
+          VERSION=$(cat version.md)
+          # Extract the major, minor, and patch numbers
+          MAJOR=$(echo $VERSION | cut -d. -f1 | cut -d'v' -f2)
+          MINOR=$(echo $VERSION | cut -d. -f2)
+          PATCH=$(echo $VERSION | cut -d. -f3)
+
+          # Increment the patch number
+          PATCH=$((PATCH + 1))
+
+          # Format the new version number
+          NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+
+          # Update version.md with the new version number
+          echo $NEW_VERSION > version.md
 
       - name: Commit and push
         if: success()
